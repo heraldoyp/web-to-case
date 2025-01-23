@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Notification API Example</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				margin: 0;
+				background-color: #f0f0f0;
+			}
+
+			.container {
+				text-align: center;
+				background-color: #fff;
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			#notify-btn {
+				padding: 10px 20px;
+				font-size: 16px;
+				color: #fff;
+				background-color: #007bff;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+			}
+
+			#notify-btn:hover {
+				background-color: #0056b3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Notification API Demo</h1>
+			<button id="notify-btn">Show Notification</button>
+		</div>
+		<script>
+			// script.js
+			document.addEventListener("DOMContentLoaded", () => {
+				const notifyButton = document.getElementById("notify-btn");
+
+				// Check if the browser supports the Notification API
+				if (!("Notification" in window)) {
+					alert(
+						"This browser does not support desktop notifications."
+					);
+					return;
+				}
+
+				// Request permission for notifications
+				const requestNotificationPermission = () => {
+					Notification.requestPermission().then((permission) => {
+						if (permission === "granted") {
+							console.log("Notification permission granted.");
+						} else {
+							console.log("Notification permission denied.");
+						}
+					});
+				};
+
+				// Show a notification
+				const showNotification = () => {
+					if (Notification.permission === "granted") {
+						new Notification("Hello!", {
+							body: "This is a notification from the website.",
+							icon: "../assets/blendmedia_logo.png", // Optional: Add an icon
+						});
+					} else {
+						alert("Please allow notifications to see them.");
+					}
+				};
+
+				// Request permission when the page loads
+				requestNotificationPermission();
+
+				// Add click event to the button
+				notifyButton.addEventListener("click", showNotification);
+			});
+		</script>
+	</body>
+</html>

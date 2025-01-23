@@ -32,8 +32,8 @@
 			}
 			.navbar {
 				border-bottom: 1px solid #333;
-        height: 75px;
-        padding: 8px 0px 8px 0px;
+				height: 75px;
+				padding: 8px 0px 8px 0px;
 			}
 			.navbar-brand svg {
 				width: 24px;
@@ -50,21 +50,21 @@
 				justify-content: center;
 				margin-right: 10px;
 			}
-      .blendmedia-logo{
-        width: 140px;
-        height: 19px;
-      }
+			.blendmedia-logo {
+				width: 140px;
+				height: 19px;
+			}
 			.breadcrumb {
 				background-color: transparent;
 			}
-      .breadcrumb-item.active{
-        color: #ffffff;
-        text-decoration: underline;
-      }
-      .breadcrumb-item a.text-muted{
-        color: #ffffff;
-        text-decoration: none;
-      }
+			.breadcrumb-item.active {
+				color: #ffffff;
+				text-decoration: underline;
+			}
+			.breadcrumb-item a.text-muted {
+				color: #ffffff;
+				text-decoration: none;
+			}
 			.breadcrumb-item + .breadcrumb-item::before {
 				color: #ffffff;
 			}
@@ -103,18 +103,100 @@
 				background-color: #e0e0e0;
 				color: #000;
 			}
+
+			/* File Attachments */
+			.upload-container {
+				max-width: 500px;
+				margin: 20px auto;
+				padding: 20px;
+				font-family: Arial, sans-serif;
+			}
+
+			.upload-area {
+				border: 2px dashed #ccc;
+				border-radius: 8px;
+				padding: 20px;
+				text-align: left;
+				cursor: pointer;
+				transition: border-color 0.3s ease;
+			}
+
+			.upload-area:hover {
+				border-color: #666;
+			}
+
+			.upload-area.dragover {
+				background-color: #222;
+				border-color: white;
+			}
+
+			#fileInput {
+				display: none;
+			}
+
+			.upload-icon {
+				width: 50px;
+				height: 50px;
+				margin-bottom: 10px;
+				fill: #666;
+			}
+
+			.file-list {
+				margin-top: 20px;
+				padding: 0;
+				list-style: none;
+			}
+
+			.file-item {
+				display: flex;
+				justify-content: space-between;
+				align-items: left;
+				padding: 8px;
+				margin: 5px 0;
+				background-color: #222;
+				border-radius: 4px;
+			}
+
+			.remove-file {
+				background: #ff4444;
+				color: white;
+				border: none;
+				padding: 4px 8px;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+
+			.button {
+				background-color: #4caf50;
+				color: white;
+				padding: 10px 20px;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+				margin-top: 10px;
+			}
+
+			.button:hover {
+				background-color: #45a049;
+			}
 		</style>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<div class="container">
 				<a class="navbar-brand d-flex align-items-center" href="#">
-					<img class="blendmedia-logo" src="assets/blendmedia_logo.png" alt="blendmedia_logo">
-					  &nbsp;Support
+					<img
+						class="blendmedia-logo"
+						src="assets/blendmedia_logo.png"
+						alt="blendmedia_logo"
+					/>
+					&nbsp;Support
 				</a>
 				<div class="ms-auto d-flex align-items-center">
 					<div class="avatar">HS</div>
-					<span class="breadcrumb-item active">harysubroto@gmail.com</span>
+					<span class="breadcrumb-item active"
+						>harysubroto@gmail.com</span
+					>
 				</div>
 			</div>
 		</nav>
@@ -125,13 +207,11 @@
 					<li class="breadcrumb-item">
 						<p href="#" class="text-muted">Support Case</p>
 					</li>
-					<li class="breadcrumb-item active">
-						New Support Case
-					</li>
+					<li class="breadcrumb-item active">New Support Case</li>
 				</ol>
 			</nav>
 
-			<div class="form-container ">
+			<div class="form-container">
 				<form
 					id="supportForm"
 					action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00DfK000001CvLJ"
@@ -144,7 +224,7 @@
 					/>
 					<input type="hidden" name="orgid" value="00DfK000001CvLJ" />
 					<input
-					  type="hidden"
+						type="hidden"
 						name="retURL"
 						value="http://www.blendmedia.co.id"
 					/>
@@ -216,6 +296,20 @@
 					</div>
 
 					<div class="mb-3">
+						<div class="mb-3">
+							<label for="formFileMultiple" class="form-label"
+								>File Attachments</label
+							>
+							<input
+								class="form-control font-control-sm"
+								type="file"
+								id="formFileMultiple"
+								multiple
+							/>
+						</div>
+					</div>
+
+					<div class="mb-3">
 						<label for="description" class="form-label"
 							>Description</label
 						>
@@ -232,16 +326,23 @@
 					<div class="mb-3">
 						<div
 							class="g-recaptcha"
-							data-sitekey="6LceCJQqAAAAAL-1K7yhWS5KnbTKBZjPmSgkOoNL"
-              data-theme="dark"
+							data-sitekey="6LdHc78qAAAAAEPPHQwGA8ZEOmfqYB5s4Smfzy4P"
+							data-theme="dark"
 						></div>
+						<br />
 					</div>
 
 					<div class="text-end">
 						<button type="button" class="btn btn-cancel me-2">
 							Cancel
 						</button>
-						<button type="submit" name="submit" class="btn btn-submit">Submit</button>
+						<button
+							type="submit"
+							name="submit"
+							class="btn btn-submit"
+						>
+							Submit
+						</button>
 					</div>
 				</form>
 			</div>
@@ -249,6 +350,96 @@
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 		<script>
+			const dropZone = document.getElementById("dropZone");
+			const fileInput = document.getElementById("fileInput");
+			const fileList = document.getElementById("fileList");
+			let files = [];
+
+			// Handle click to browse
+			dropZone.addEventListener("click", () => fileInput.click());
+
+			// Handle file selection
+			fileInput.addEventListener("change", (e) => {
+				addFiles(e.target.files);
+			});
+
+			// Handle drag and drop
+			dropZone.addEventListener("dragover", (e) => {
+				e.preventDefault();
+				dropZone.classList.add("dragover");
+			});
+
+			dropZone.addEventListener("dragleave", (e) => {
+				e.preventDefault();
+				dropZone.classList.remove("dragover");
+			});
+
+			dropZone.addEventListener("drop", (e) => {
+				e.preventDefault();
+				dropZone.classList.remove("dragover");
+				addFiles(e.dataTransfer.files);
+			});
+
+			function addFiles(newFiles) {
+				Array.from(newFiles).forEach((file) => {
+					if (!files.some((f) => f.name === file.name)) {
+						files.push(file);
+						displayFile(file);
+					}
+				});
+			}
+
+			function displayFile(file) {
+				const li = document.createElement("li");
+				li.className = "file-item";
+
+				const fileInfo = document.createElement("span");
+				fileInfo.textContent = `${file.name} (${formatFileSize(
+					file.size
+				)})`;
+
+				const removeButton = document.createElement("button");
+				removeButton.textContent = "Remove";
+				removeButton.className = "remove-file";
+				removeButton.onclick = () => {
+					files = files.filter((f) => f.name !== file.name);
+					li.remove();
+				};
+
+				li.appendChild(fileInfo);
+				li.appendChild(removeButton);
+				fileList.appendChild(li);
+			}
+
+			function formatFileSize(bytes) {
+				if (bytes === 0) return "0 Bytes";
+				const k = 1024;
+				const sizes = ["Bytes", "KB", "MB", "GB"];
+				const i = Math.floor(Math.log(bytes) / Math.log(k));
+				return (
+					parseFloat((bytes / Math.pow(k, i)).toFixed(2)) +
+					" " +
+					sizes[i]
+				);
+			}
+
+			function uploadFiles() {
+				// Here you would typically send the files to a server
+				// For demonstration, we'll just log the files
+				console.log("Files to upload:", files);
+				alert(`Uploading ${files.length} files...`);
+
+				// Example of how you might upload using FormData
+				// const formData = new FormData();
+				// files.forEach(file => {
+				//   formData.append('files[]', file);
+				// });
+				// fetch('/upload', {
+				//   method: 'POST',
+				//   body: formData
+				// });
+			}
+
 			document
 				.getElementById("supportForm")
 				.addEventListener("submit", function (e) {
