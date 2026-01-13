@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Konsultasi Sekarang | Telkomsel Enterprise</title>
+  <style>
+    :root {
+      --telkomsel-red: #ff0000;
+      --telkomsel-dark: #1a1a1a;
+      --gray: #666;
+      --light-gray: #f5f5f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      color: var(--telkomsel-red);
+      font-size: 2.1rem;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+
+    .form-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 40px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: var(--telkomsel-dark);
+      font-size: 1.65rem;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #222;
+    }
+
+    .required::after {
+      content: " *";
+      color: var(--telkomsel-red);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--telkomsel-red);
+      box-shadow: 0 0 0 3px rgba(255,0,0,0.1);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .char-count {
+      font-size: 0.82rem;
+      color: #888;
+      text-align: right;
+      margin-top: 6px;
+    }
+
+    .error {
+      color: var(--telkomsel-red);
+      font-size: 0.9rem;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .btn-submit {
+      background: var(--telkomsel-red);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: block;
+      margin: 32px auto 0;
+    }
+
+    .btn-submit:hover {
+      background: #d90000;
+    }
+
+    .btn-submit:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 40px;
+    }
+
+    .footer-note a {
+      color: var(--telkomsel-red);
+      text-decoration: none;
+    }
+
+    .success-message {
+      display: none;
+      background: #e6ffe6;
+      color: #006400;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 640px) {
+      .form-card { padding: 24px; }
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.45rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Konsultasi Sekarang</h1>
+    <p class="subtitle">Enterprise</p>
+  </header>
+
+  <div class="form-card">
+    <h2>Ceritakan kebutuhan Anda, dan Kami akan membantu Anda untuk mendapatkan solusi yang tepat</h2>
+
+    <form id="konsultasiForm" novalidate>
+      <!-- Informasi Pribadi -->
+      <div class="form-group">
+        <label for="nama" class="required">Nama Lengkap</label>
+        <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap Anda" />
+        <div class="error" id="namaError">Harap isi nama lengkap</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="required">Email</label>
+        <input type="email" id="email" name="email" required placeholder="contoh@email.com" />
+        <div class="error" id="emailError">Masukkan alamat email yang valid</div>
+      </div>
+
+      <div class="form-group">
+        <label for="hp" class="required">No. Handphone</label>
+        <input type="tel" id="hp" name="hp" required placeholder="0812xxxxxxx" pattern="[0-9]{8,13}" />
+        <div class="error" id="hpError">Nomor handphone tidak valid (8-13 digit)</div>
+      </div>
+
+      <!-- Informasi Perusahaan -->
+      <div class="form-group">
+        <label for="perusahaan" class="required">Nama Perusahaan</label>
+        <input type="text" id="perusahaan" name="perusahaan" required placeholder="PT. Contoh Jaya" />
+      </div>
+
+      <div class="form-group">
+        <label for="bidang">Bidang Bisnis</label>
+        <select id="bidang" name="bidang">
+          <option value="">Pilih bidang bisnis</option>
+          <option>Perbankan & Keuangan</option>
+          <option>Manufaktur</option>
+          <option>Transportasi & Logistik</option>
+          <option>Ritel</option>
+          <option>Pertambangan & Energi</option>
+          <option>Pemerintahan</option>
+          <option>Kesehatan</option>
+          <option>Pendidikan</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="skala">Skala Bisnis</label>
+        <select id="skala" name="skala">
+          <option value="">Pilih skala bisnis</option>
+          <option>Startup / UKM</option>
+          <option>Menengah</option>
+          <option>Enterprise / Large</option>
+        </select>
+      </div>
+
+      <!-- Informasi Kebutuhan -->
+      <div class="form-group">
+        <label for="produk" class="required">Pilih produk yang ingin Anda ketahui</label>
+        <select id="produk" name="produk" required>
+          <option value="">-- Pilih produk --</option>
+          <option>Internet Corporate</option>
+          <option>Telkomsel Super Seru</option>
+          <option>IoT Solutions</option>
+          <option>Private Network / 5G Enterprise</option>
+          <option>Cloud & IaaS</option>
+          <option>Cybersecurity</option>
+          <option>Field Force Management</option>
+          <option>Mobile Device Management</option>
+          <option>Big Data / Customer Insight</option>
+          <option>Lainnya</option>
+        </select>
+        <div class="error" id="produkError">Harap pilih produk</div>
+      </div>
+
+      <div class="form-group">
+        <label for="pesan" class="required">Apa yang ingin Anda ketahui</label>
+        <textarea id="pesan" name="pesan" maxlength="500" placeholder="Ceritakan kebutuhan bisnis Anda..." required></textarea>
+        <div class="char-count"><span id="counter">0</span>/500</div>
+        <div class="error" id="pesanError">Harap isi deskripsi kebutuhan</div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">Kirim</button>
+    </form>
+
+    <div class="success-message" id="successMsg">
+      <strong>Terima kasih!</strong><br>
+      Form berhasil dikirim. Tim Solution Expert kami akan segera menghubungi Anda.
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Situs kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan melanjutkan, Anda menyetujui 
+    <a href="https://www.telkomsel.com/terms-and-conditions" target="_blank">Syarat & Ketentuan</a> dan 
+    <a href="https://www.telkomsel.com/privacy-policy" target="_blank">Kebijakan Privasi</a>.
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('konsultasiForm');
+  const textarea = document.getElementById('pesan');
+  const counter = document.getElementById('counter');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('successMsg');
+
+  // Character counter
+  textarea.addEventListener('input', () => {
+    counter.textContent = textarea.value.length;
+  });
+
+  // Basic client-side validation + fake submit
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let isValid = true;
+
+    // Reset errors
+    document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+
+    // Required fields
+    const requiredFields = ['nama', 'email', 'hp', 'perusahaan', 'produk', 'pesan'];
+    requiredFields.forEach(id => {
+      const field = document.getElementById(id);
+      if (!field.value.trim()) {
+        document.getElementById(id + 'Error').style.display = 'block';
+        isValid = false;
+      }
+    });
+
+    // Email format
+    const email = document.getElementById('email');
+    if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      document.getElementById('emailError').style.display = 'block';
+      isValid = false;
+    }
+
+    // Phone format (simple)
+    const hp = document.getElementById('hp');
+    if (hp.value && !/^\d{8,13}$/.test(hp.value.replace(/\D/g,''))) {
+      document.getElementById('hpError').style.display = 'block';
+      isValid = false;
+    }
+
+    if (isValid) {
+      // Simulate success (in real case → send to API)
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+      submitBtn.disabled = true;
+
+      // Optional: reset after 8 seconds (demo only)
+      setTimeout(() => {
+        form.reset();
+        counter.textContent = '0';
+        form.style.display = 'block';
+        successMsg.style.display = 'none';
+        submitBtn.disabled = false;
+      }, 8000);
+    } else {
+      // Scroll to first error
+      document.querySelector('.error[style*="block"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+</script>
+
+</body>
+</html>
